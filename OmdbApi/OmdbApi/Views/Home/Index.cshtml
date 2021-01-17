@@ -1,0 +1,40 @@
+﻿@model OmdbApi.ViewModels.HomeIndexViewModel
+
+<form asp-action="Index">
+    <div class="row">
+        <div class="form-group col-4">
+            <input asp-for="SearchInputModel.Title" class="form-control" placeholder="Search" />
+        </div>
+        <div class="form-group col-4">
+            <input type="submit" value="Search" class="btn btn-primary" />
+        </div>
+    </div>
+</form>
+
+<div class="container">
+    <div class="row">
+        @if (Model.OmdbInfoList.Search != null)
+        {
+            @foreach (var item in Model.OmdbInfoList.Search)
+            {
+                <div style="width: 20%; height: 550px; padding: 10px">
+                    <div class="card">
+                        <img class="card-img-top" src="@item.Poster" style="height: 250px" alt="Card image cap">
+                        <div class="card-body" style="height: 100px">
+                            <h5 class="card-title" style="font-size: 15px; text-align: center">@item.Title</h5>
+                        </div>
+                        <p class="card-text" style="text-align: center">Release Date : @item.Year</p>
+                        @Html.ActionLink("Details", "Details", new { id = item.imdbID },
+                            new { @class = "btn btn-primary", @style = "height: 50px" })
+
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>
+
+
+
+
+

@@ -1,0 +1,119 @@
+﻿@model OmdbApi.Models.Movie.OutputModel.OmdbItem
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+<div class="container row">
+    <div class="col-3">
+        <img src="@Model.Poster" alt="poster" style="width: 100%" />
+    </div>
+    <div class="col-9">
+        <table>
+            <tbody>
+                <tr>
+                    <td style="width: 20%"></td>
+                    <td style="width: 80%"></td>
+                </tr>
+                <tr>
+                    <td>Title</td>
+                    <td>@Model.Title</td>
+                </tr>
+                <tr>
+                    <td>Year </td>
+                    <td>@Model.Year</td>
+                </tr>
+                <tr>
+                    <td>Release Date </td>
+                    <td>@Model.Released</td>
+                </tr>
+                <tr>
+                    <td>Runtime </td>
+                    <td>@Model.Runtime</td>
+                </tr>
+                <tr>
+                    <td>Rated </td>
+                    <td>@Model.Rated</td>
+                </tr>
+                <tr>
+                    <td>Genre </td>
+                    <td>@Model.Genre</td>
+                </tr>
+                <tr>
+                    <td>Director </td>
+                    <td>@Model.Director</td>
+                </tr>
+                <tr>
+                    <td>Writer </td>
+                    <td>@Model.Writer</td>
+                </tr>
+                <tr>
+                    <td>Actors </td>
+                    <td>@Model.Actors</td>
+                </tr>
+                <tr>
+                    <td>Plot </td>
+                    <td>@Model.Plot</td>
+                </tr>
+                <tr>
+                    <td>Language </td>
+                    <td>@Model.Language</td>
+                </tr>
+                <tr>
+                    <td>Country </td>
+                    <td>@Model.Country</td>
+                </tr>
+                <tr>
+                    <td>Awards </td>
+                    <td>@Model.Awards</td>
+                </tr>
+                <tr>
+                    <td>Metascore </td>
+                    <td>@Model.Metascore</td>
+                </tr>
+                <tr>
+                    <td>imdbRating </td>
+                    <td>@Model.imdbRating</td>
+                </tr>
+                <tr>
+                    <td>imdbVotes </td>
+                    <td>@Model.imdbVotes</td>
+                </tr>
+                <tr>
+                    <td>Type </td>
+                    <td>@Model.Type</td>
+                </tr>
+                <tr>
+                    <td>DVD </td>
+                    <td>@Model.DVD</td>
+                </tr>
+                <tr>
+                    <td>BoxOffice </td>
+                    <td>@Model.BoxOffice</td>
+                </tr>
+                <tr>
+                    <td>Website </td>
+                    <td>@Model.Website</td>
+                </tr>
+                <tr>
+                    <td>Response </td>
+                    <td>@Model.Response</td>
+                </tr>
+            </tbody>
+        </table>
+        <br />
+        <form asp-controller="Order" asp-action="Send" method="post" enctype="multipart/form-data">
+            <div class="row">
+                <div class="form-group  col-4">
+                    <input type="email" name="email" class="form-control" id="email" placeholder="Enter email">
+                </div>
+                <div class="form-group col-4">
+                    <input type="submit" value="Send Email" class="btn btn-success" />
+                </div>
+                <input type="hidden" name="imdbID" value="@Model.imdbID">
+            </div>
+        </form>
+    </div>
+</div>
+

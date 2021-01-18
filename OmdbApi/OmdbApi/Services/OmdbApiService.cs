@@ -3,16 +3,24 @@ using System.IO;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Options;
+using OmdbApi.Configurations;
 using OmdbApi.Interfaces;
 
 namespace OmdbApi.Services
 {
     public class OmdbApiService : IOmdbApi
     {
+        private readonly IOptions<OmdbApiConfiguration> _omdbApiConfiguration;
+
+        public OmdbApiService(IOptions<OmdbApiConfiguration> omdbApiConfiguration)
+        {
+            _omdbApiConfiguration = omdbApiConfiguration;
+        }
         public async Task<string> GetDataAsync(string query)
         {
-            string apiKey = "7df04009";
-            string baseUri = $"http://www.omdbapi.com/?apikey={apiKey}";
+            var apiKey = _omdbApiConfiguration.Value.Key;
+            var baseUri = _omdbApiConfiguration.Value.Url + apiKey;
 
             var request = WebRequest.Create(baseUri + query);
             request.Timeout = 10000;

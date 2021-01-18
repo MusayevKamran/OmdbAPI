@@ -10,6 +10,7 @@ namespace OmdbApi.Extensions
         public static IServiceCollection RegisterConfiguration(this IServiceCollection services, IConfiguration configuration)
         {
             services.Configure<EmailConfiguration>(configuration.GetSection("EmailConfiguration"));
+            services.Configure<OmdbApiConfiguration>(configuration.GetSection("OmdbApiConfiguration"));
 
             return services;
         }
